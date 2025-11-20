@@ -6,7 +6,7 @@ let projects = [
     id: 1,
     title: "App de Salud Mental",
     description: "Aplicación móvil que conecta estudiantes con recursos de apoyo psicológico y bienestar emocional.",
-    icon: "🏥",
+    //icon: "imagen",
     status: "activo",
     progress: 65,
     tags: ["React Native", "UI/UX", "Psicología"],
@@ -21,7 +21,7 @@ let projects = [
     id: 2,
     title: "Agricultura Urbana Sostenible",
     description: "Startup enfocada en desarrollar soluciones innovadoras para el cultivo urbano sostenible.",
-    icon: "🌱",
+    //icon: "imagen",
     status: "activo",
     progress: 40,
     tags: ["Startup", "Sostenibilidad", "Marketing"],
@@ -35,7 +35,7 @@ let projects = [
     id: 3,
     title: "Sistema IoT Hogares Inteligentes",
     description: "Desarrollo de automatización del hogar con enfoque en eficiencia energética y sostenibilidad.",
-    icon: "💡",
+    //icon: "imagen",
     status: "activo",
     progress: 78,
     tags: ["IoT", "Arduino", "Python"],
@@ -49,7 +49,7 @@ let projects = [
     id: 4,
     title: "Plataforma Arte Digital",
     description: "Plataforma web colaborativa donde artistas pueden trabajar juntos en tiempo real.",
-    icon: "🎨",
+    //icon: "imagen",
     status: "activo",
     progress: 52,
     tags: ["Web Dev", "Arte Digital", "WebSocket"],
@@ -63,7 +63,7 @@ let projects = [
     id: 5,
     title: "App Gestión de Tareas",
     description: "Aplicación móvil para gestión de tareas con metodología ágil y colaboración en equipo.",
-    icon: "📱",
+    //icon: "imagen",
     status: "activo",
     progress: 30,
     tags: ["Flutter", "Firebase", "Agile"],
@@ -160,7 +160,7 @@ function renderProjects() {
       if (statusGroups[status].length === 0 && status !== 'archivado') {
         grid.innerHTML = `
           <div class="empty-state">
-            <div class="empty-state-icon">📭</div>
+            <div class="empty-state-icon"><img src="https://cdn-icons-png.flaticon.com/512/5741/5741178.png" width="100" height="120"></div>
             <h3>No hay proyectos ${status}s</h3>
             <p>Tus proyectos ${status}s aparecerán aquí</p>
           </div>
@@ -277,7 +277,7 @@ function createProject() {
   const title = document.getElementById('projectTitle').value;
   const description = document.getElementById('projectDescription').value;
   const category = document.getElementById('projectCategory').value;
-  const icon = document.getElementById('projectIcon').value || '📁';
+  //const icon = document.getElementById('projectIcon').value || '📁';
 
   if (!title || !description || !category) {
     showToast('Por favor completa todos los campos requeridos', 'error');

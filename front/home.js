@@ -1,14 +1,12 @@
 // ===========================
 // GLOBAL VARIABLES
 // ===========================
-
-//remove icons from cards and fix UNDEFINED
 let allProjects = [
   {
     id: 1,
     title: "App de Salud Mental para Estudiantes",
     description: "Buscamos desarrolladores y diseñadores para crear una aplicación que conecte estudiantes con recursos de apoyo psicológico y bienestar.",
-    //icon: "imagen",
+    icon: "🚀",
     category: "tecnologia",
     author: "María González - Psicología",
     teamSize: 5,
@@ -20,7 +18,7 @@ let allProjects = [
     id: 2,
     title: "Startup de Agricultura Urbana",
     description: "Proyecto de emprendimiento para desarrollar soluciones de cultivo urbano sostenible. Necesitamos ingenieros ambientales y marketers.",
-    //icon: "imagen",
+    icon: "🌱",
     category: "startup",
     author: "Carlos Ruiz - Agronomía",
     teamSize: 6,
@@ -32,7 +30,7 @@ let allProjects = [
     id: 3,
     title: "Plataforma de Arte Digital Colaborativo",
     description: "Creación de una plataforma web donde artistas pueden colaborar en tiempo real. Buscamos desarrolladores full-stack.",
-    //icon: "imagen",
+    icon: "🎨",
     category: "diseno",
     author: "Ana López - Bellas Artes",
     teamSize: 4,
@@ -44,7 +42,7 @@ let allProjects = [
     id: 4,
     title: "Sistema IoT para Hogares Inteligentes",
     description: "Desarrollo de un sistema de automatización del hogar con enfoque en eficiencia energética. Buscamos programadores e ing. eléctricos.",
-    //icon: "imagen",
+    icon: "💡",
     category: "ingenieria",
     author: "Roberto Díaz - Ing. Mecatrónica",
     teamSize: 7,
@@ -56,7 +54,7 @@ let allProjects = [
     id: 5,
     title: "Plataforma E-Learning Interactiva",
     description: "Desarrollo de una plataforma educativa con gamificación para estudiantes de secundaria.",
-    //icon: "imagen",
+    icon: "📚",
     category: "tecnologia",
     author: "Laura Martínez - Educación",
     teamSize: 6,
@@ -68,7 +66,7 @@ let allProjects = [
     id: 6,
     title: "Campaña Marketing Digital Sostenible",
     description: "Estrategia de marketing para productos ecológicos dirigida a millennials y Gen Z.",
-    //icon: "imagen",
+    icon: "📱",
     category: "marketing",
     author: "Diego Torres - Marketing",
     teamSize: 4,
@@ -80,7 +78,7 @@ let allProjects = [
     id: 7,
     title: "App de Gestión Financiera Personal",
     description: "Aplicación móvil para ayudar a jóvenes a administrar sus finanzas de manera inteligente.",
-    //icon: "imagen",
+    icon: "💰",
     category: "negocios",
     author: "Patricia Gómez - Finanzas",
     teamSize: 5,
@@ -92,7 +90,7 @@ let allProjects = [
     id: 8,
     title: "Robot Clasificador de Residuos",
     description: "Proyecto de robótica para clasificación automática de residuos con inteligencia artificial.",
-    //icon: "imagen",
+    icon: "🤖",
     category: "ingenieria",
     author: "Miguel Ángel - Ing. Robótica",
     teamSize: 8,
@@ -105,6 +103,55 @@ let allProjects = [
 let filteredProjects = [...allProjects];
 let currentProjectId = null;
 
+// Notifications data
+let notifications = [
+  {
+    id: 1,
+    type: 'project',
+    icon: '📁',
+    title: 'Nuevo miembro en tu proyecto',
+    text: 'Ana López se unió a "App de Salud Mental"',
+    time: 'Hace 5 minutos',
+    read: false
+  },
+  {
+    id: 2,
+    type: 'message',
+    icon: '💬',
+    title: 'Nuevo mensaje',
+    text: 'Carlos Ruiz: "¿Podemos reunirnos mañana?"',
+    time: 'Hace 1 hora',
+    read: false
+  },
+  {
+    id: 3,
+    type: 'invite',
+    icon: '🎯',
+    title: 'Invitación a proyecto',
+    text: 'Te invitaron a unirte a "Sistema IoT Hogares"',
+    time: 'Hace 2 horas',
+    read: false
+  },
+  {
+    id: 4,
+    type: 'milestone',
+    icon: '🎉',
+    title: 'Hito completado',
+    text: 'El proyecto "Plataforma Arte Digital" alcanzó 50% de progreso',
+    time: 'Hace 3 horas',
+    read: true
+  },
+  {
+    id: 5,
+    type: 'comment',
+    icon: '💭',
+    title: 'Nuevo comentario',
+    text: 'María comentó en tu proyecto',
+    time: 'Hace 5 horas',
+    read: true
+  }
+];
+
 // ===========================
 // INITIALIZATION
 // ===========================
@@ -113,6 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeFilters();
   initializeSidebar();
   initializeSearch();
+  initializeNotifications();
+  updateNotificationBadge();
 });
 
 // ===========================
@@ -258,8 +307,8 @@ function createProjectCard(project) {
         <span>${project.author}</span>
       </div>
       <div class="project-stats">
-        <div class="stat"><img src="https://cdn-icons-png.flaticon.com/512/10691/10691882.png" width="20"> ${project.currentMembers}/${project.teamSize}</div>
-        <div class="stat"><img src="https://images.vexels.com/media/users/3/299488/isolated/preview/8c8c1857cbcf222280a12a7f5a122abc-icono-de-tecnologia-de-burbujas-de-chat-de-mensaje.png" width="20"> ${project.messages}</div>
+        <div class="stat">👥 ${project.currentMembers}/${project.teamSize}</div>
+        <div class="stat">💬 ${project.messages}</div>
       </div>
     </div>
   `;
@@ -340,7 +389,7 @@ function createProject() {
   const title = document.getElementById('projectTitle').value;
   const description = document.getElementById('projectDescription').value;
   const category = document.getElementById('projectCategory').value;
-  //const icon = document.getElementById('projectIcon').value || 'imagen';
+  const icon = document.getElementById('projectIcon').value || '📁';
   const teamSize = parseInt(document.getElementById('projectTeamSize').value);
 
   if (!title || !description || !category) {

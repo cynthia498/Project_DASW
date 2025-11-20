@@ -48,15 +48,17 @@
         <button class="btn-primary" data-bs-toggle="modal" data-bs-target="#newProjectModal">
           <img src="https://img.icons8.com/m_outlined/512/FFFFFF/plus.png" width="20"> Crear Proyecto
         </button>
-        <button class="header-btn" data-bs-toggle="modal" data-bs-target="#notificationsModal" aria-label="Notificaciones">
-          <img src="https://img.icons8.com/ios11/512/FFFFFF/appointment-reminders.png" width="20" alt="Notificaciones">
+
+        <button class="header-btn notification-btn" data-bs-toggle="modal" data-bs-target="#notificationsModal" aria-label="Notificaciones">
+          <img src="https://img.icons8.com/ios11/512/FFFFFF/appointment-reminders.png" width="20">
+          <span class="notification-badge" id="notificationBadge">0</span>
         </button>
+
         <div class="dropdown">
-          <div class="user-avatar" data-bs-toggle="dropdown" aria-expanded="false" role="button" aria-haspopup="true" title="Usuario">U</div>
+          <div class="user-avatar" data-bs-toggle="dropdown" aria-expanded="false" role="button" aria-haspopup="true" title="Usuario">User</div>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="#"><img src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-File.png" width="20"> Mi perfil</a></li>
             <li><a class="dropdown-item" href="misProyectos.html"><img src="https://cdn2.iconfinder.com/data/icons/leto-most-searched-mix-3/64/__menu_more-28-512.png" width="20" alt="Mis Proyectos"> Mis proyectos</a></li>
-            
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#"><img src="https://cdn-icons-png.flaticon.com/512/148/148913.png" width="20"> Configuración</a></li>
             <li><a class="dropdown-item" href="#"><img src="https://cdn-icons-png.flaticon.com/512/8212/8212701.png" width="20"> Cerrar sesión</a></li>
@@ -93,7 +95,6 @@
       </div>
 
       <div class="project-grid" id="projectGrid">
-        <!-- Projects will be rendered here by JavaScript -->
       </div>
     </main>
   </div>
@@ -131,8 +132,6 @@
                   <option value="startup">Startup</option>
                 </select>
               </div>
-
-              
             </div>
 
             <div class="mb-3">
@@ -174,11 +173,28 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body" id="projectDetailBody">
-          <!-- Content loaded dynamically -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           <button type="button" class="btn btn-primary" onclick="joinProject()">Unirse al Proyecto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Notificaciones (corregido) -->
+  <div class="modal fade" id="notificationsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Notificaciones</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-0" id="notificationsBody">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="markAllAsRead()">Marcar todas como leídas</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         </div>
       </div>
     </div>
